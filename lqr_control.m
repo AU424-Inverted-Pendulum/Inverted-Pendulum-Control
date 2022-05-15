@@ -51,7 +51,7 @@ D = zeros(4, 1);
 % disp("C = "); disp(C);
 % disp("G(s) = "); disp(vpa(Gs, 5));
 
-Q = diag([1 10 1 1]);
+Q = diag([1 100 1 1]);
 R = 1;
 
 K = lqr(A, B, Q, R);
