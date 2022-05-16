@@ -24,7 +24,7 @@ function u = ode45_control(x)
     R = 100000;
     
     [P, ~, ~] = care(A_ctl, B_ctrl, C * Q * C', R);
-
-    y = C * x;
+    noise = 0.01 *  mvnrnd([0; 0; 0; 0;], 0.01 * eye(4), 1)';
+    y = C * x + noise;
     u = -inv(R) * B_ctrl' * P * y;
 end

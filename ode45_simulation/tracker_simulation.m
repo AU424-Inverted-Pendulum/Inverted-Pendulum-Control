@@ -20,3 +20,14 @@ title('LQR Tracker', 'FontSize', 15);
 l = legend('$\theta_1$', '$\theta_2$', '$\dot\theta_1$', '$\dot\theta_2$', 'interpreter', 'latex');
 set(gca, 'FontSize', 15,'Fontname', 'Times New Roman');
 set(l, 'FontName', 'Times New Roman', 'FontSize', 15, 'FontWeight', 'normal');
+
+lp = 0.153;  % (m)
+r = 0.0826;  % (m)
+xp = r .* cos(x_store(1, :)) - lp .* sin(x_store(2, :)) .* sin(x_store(1, :));
+yp = -r .* sin(x_store(1, :)) - lp .* sin(x_store(2, :)) .* cos(x_store(1, :));
+zp = lp * cos(x_store(2, :));
+figure;
+plot3(xp, yp, zp, 'LineWidth', 2);
+grid on;
+zlim([0, 0.2]);
+title("Pendulum End Trajectory with LQR Tracker");
