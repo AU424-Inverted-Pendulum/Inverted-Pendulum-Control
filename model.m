@@ -2,19 +2,26 @@ clear; clc;
 Mp = 0.027;  % (kg)
 lp = 0.153;  % (m)
 r = 0.0826;  % (m)
-Jeq = 1.84e-4;  % (kg.m^2)
-Jp = 1.70e-4;  % (kg.m^2)
+Jeq = 3.68e-4;  % (kg.m^2)
+Jp = 6.98e-4;  % (kg.m^2)
 g = 9.81;  % (m/s^2)
+
+Kt = 0.0333;
+Km = 0.0333;
+Rm = 8.7;
+
+Beq = 1e-6;
+Bp = 1e-6;
 
 syms theta1 theta2 s;
 M = [
-    Jeq + Mp * (r^2 + lp^2) + Jp, Mp * r * lp;  % cos(theta2)^2
-    Mp * r * lp, Jp
+    Jeq + Mp * r * r, -Mp * r * lp;
+    -Mp * r * lp, Jp + Mp * lp * lp
 ];
 
 S = [
-    0.0001, 0;
-    0, 0.0001;
+    Kt * Km / Rm + Beq, 0;
+    0, Bp;
 ];
 
 G = [
@@ -29,14 +36,14 @@ A = [
 
 B = [
     zeros(2, 1);
-    inv(M) * [1; 0]
+    inv(M) * [Kt / Rm; 0]
 ];
 
 C = [
-    0, 0, 0, 0;
+    1, 0, 0, 0;
     0, 1, 0, 0;
-    0, 0, 0, 0;
-    0, 0, 0, 0
+    0, 0, 1, 0;
+    0, 0, 0, 1
 ];
 
 D = zeros(4, 1);
