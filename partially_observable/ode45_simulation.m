@@ -3,7 +3,7 @@ clear; clc; close all;
 x_store = [];
 x0 = [0.1; 0.1; 0; 0];
 dt = 0.01;
-t = 0:dt:10;
+t = 0:dt:20;
 
 for t0 = t
     u = ode45_control(x0);
@@ -14,7 +14,7 @@ end
 
 plot(t, x_store, 'LineWidth', 1.5);
 xlabel('t/s');
-title('LQR Controller with Mismatch')
+title("Partially Oberavable LQR Tracker");
 l = legend('$\theta_1$', '$\theta_2$', '$\dot\theta_1$', '$\dot\theta_2$', 'interpreter', 'latex');
 set(gca, 'FontSize', 15,'Fontname', 'Times New Roman');
 set(l, 'FontName', 'Times New Roman', 'FontSize', 15, 'FontWeight', 'normal');

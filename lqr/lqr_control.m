@@ -13,8 +13,8 @@ M = [
 ];
 
 S = [
-    0.01, 0;
-    0, 0.01
+    0, 0;
+    0, 0;
 ];
 
 G = [
@@ -62,7 +62,7 @@ Dc = D;
 
 ss_ctl = ss(Ac, B, C, D);
 
-t = 0 : 0.01 : 15;
+t = 0 : 0.01 : 10;
 x0 = [0.1, 0.1, 0, 0];
 r = 0 * ones(size(t));
 
@@ -70,34 +70,42 @@ r = 0 * ones(size(t));
 
 %% 画图
 
-subplot(4, 1, 1);
-plot(t, x(:, 1), 'linewidth', 2);
-grid on;
-grid minor;
+plot(t, x, 'LineWidth', 1.5);
 xlabel('t/s');
-title('$\theta_1/rad$', 'interpreter', 'latex');
-set(gca, 'fontname', 'times new roman', 'fontsize', 12);
+title('Realistic LQR Controller', 'FontSize', 15);
+l = legend('$\theta_1$', '$\theta_2$', '$\dot\theta_1$', '$\dot\theta_2$', 'interpreter', 'latex');
+set(gca, 'FontSize', 15,'Fontname', 'Times New Roman');
+set(l, 'FontName', 'Times New Roman', 'FontSize', 15, 'FontWeight', 'normal');
 
-subplot(4, 1, 2);
-plot(t, x(:, 2), 'linewidth', 2);
-grid on;
-grid minor;
-xlabel('t/s');
-title('$\theta_2/rad$', 'interpreter', 'latex');
-set(gca, 'fontname', 'times new roman', 'fontsize', 12);
-
-subplot(4, 1, 3);
-plot(t, x(:, 3), 'linewidth', 2);
-grid on;
-grid minor;
-xlabel('t/s');
-title('$\dot\theta_1/(rad/s)$', 'interpreter', 'latex');
-set(gca, 'fontname', 'times new roman', 'fontsize', 12);
-
-subplot(4, 1, 4);
-plot(t, x(:, 4), 'linewidth', 2);
-grid on;
-grid minor;
-xlabel('t/s');
-title('$\dot\theta_2/(rad/s)$', 'interpreter', 'latex');
-set(gca, 'fontname', 'times new roman', 'fontsize', 12);
+% figure
+% subplot(4, 1, 1);
+% plot(t, x(:, 1), 'linewidth', 2);
+% grid on;
+% grid minor;
+% xlabel('t/s');
+% title('$\theta_1/rad$', 'interpreter', 'latex');
+% set(gca, 'fontname', 'times new roman', 'fontsize', 12);
+% 
+% subplot(4, 1, 2);
+% plot(t, x(:, 2), 'linewidth', 2);
+% grid on;
+% grid minor;
+% xlabel('t/s');
+% title('$\theta_2/rad$', 'interpreter', 'latex');
+% set(gca, 'fontname', 'times new roman', 'fontsize', 12);
+% 
+% subplot(4, 1, 3);
+% plot(t, x(:, 3), 'linewidth', 2);
+% grid on;
+% grid minor;
+% xlabel('t/s');
+% title('$\dot\theta_1/(rad/s)$', 'interpreter', 'latex');
+% set(gca, 'fontname', 'times new roman', 'fontsize', 12);
+% 
+% subplot(4, 1, 4);
+% plot(t, x(:, 4), 'linewidth', 2);
+% grid on;
+% grid minor;
+% xlabel('t/s');
+% title('$\dot\theta_2/(rad/s)$', 'interpreter', 'latex');
+% set(gca, 'fontname', 'times new roman', 'fontsize', 12);

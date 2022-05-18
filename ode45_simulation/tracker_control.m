@@ -18,6 +18,7 @@ function u = tracker_control(x, r, t)
     Q = diag([1 1000 1 10]);
     R = 100000;
     [P, ~, ~] = care(A_ctl, B_ctrl, Q, R);
+    noise = 0.02 *  mvnrnd([0; 0; 0; 0;], 0.01 * eye(4), 1)';
 %     P = [
 %         1.3406,    3.9893,    0.3986,    0.2062;
 %         3.9893,  157.9898,    5.1417,    2.9572;
@@ -32,5 +33,5 @@ function u = tracker_control(x, r, t)
 %         0.2071,   -4.1949,         0,         0;    
 %     ];
     g = G * [r(t); 0; 0; 0];
-    u = -inv(R) * B_ctrl' *(P * x - g);
+    u = -inv(R) * B_ctrl' *(P * (x + noise) - g);
 end
