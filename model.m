@@ -2,8 +2,8 @@ clear; clc;
 Mp = 0.027;  % (kg)
 lp = 0.153;  % (m)
 r = 0.0826;  % (m)
-Jeq = 3.68e-4;  % (kg.m^2)
-Jp = 6.98e-4;  % (kg.m^2)
+Jeq = 1.84e-4;  % (kg.m^2)
+Jp = 1.70e-4;  % (kg.m^2)
 g = 9.81;  % (m/s^2)
 
 Kt = 0.0333;
@@ -12,6 +12,8 @@ Rm = 8.7;
 
 Beq = 1e-6;
 Bp = 1e-6;
+% Beq = 0;
+% Bp = 0;
 
 syms theta1 theta2 s;
 M = [
