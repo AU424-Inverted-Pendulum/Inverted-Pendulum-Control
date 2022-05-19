@@ -20,8 +20,8 @@ function u = ode45_control(x)
         0, 0, 0, 0;
     ];
     
-    Q = diag([1000 1 1 1]);
-    R = 100000000;
+    Q = diag([1 1000 1 1]);
+    R = 10;
     
     [P, ~, ~] = care(A_ctrl, B_ctrl, C * Q * C', R);
 

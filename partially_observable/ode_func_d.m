@@ -1,4 +1,5 @@
-function [x_kf_p, P_kf_p] = KF_pred(x_kf_u, P_kf_u, u, Q)
+function x = ode_func_d(x0, u, noise)
+    % dt = 0.001 (s)
     G = [
         1.0000,    0.0000,    0.0010,    0.0000;
              0,    1.0000,   -0.0000,    0.0010;
@@ -12,8 +13,9 @@ function [x_kf_p, P_kf_p] = KF_pred(x_kf_u, P_kf_u, u, Q)
         0.0172;
         0.0073;
     ];
-
-	x_kf_p = G * x_kf_u + H * u;
-    P_kf_p = G * P_kf_u * G' + Q;
+    
+    x = G * x0 + H * u;
+    if nargin == 3
+        x = x + noise;
+    end
 end
-
